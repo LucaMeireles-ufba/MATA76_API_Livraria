@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "21a56084-12e8-4448-a84d-912bf5a3e238",
+		"name": "API Livraria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24366056"
+	},
+	"item": [
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "Books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/books?limit=1&page=2&author=Daniel Santos&year_publications=2028&name=Caulculo numérico&publishing_company=Arqueiro&subject=matemática&ISBN=ISBN 1321546512313&status=DISPONIVEL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "author",
+									"value": "Daniel Santos"
+								},
+								{
+									"key": "year_publications",
+									"value": "2028"
+								},
+								{
+									"key": "name",
+									"value": "Caulculo numérico"
+								},
+								{
+									"key": "publishing_company",
+									"value": "Arqueiro"
+								},
+								{
+									"key": "subject",
+									"value": "matemática"
+								},
+								{
+									"key": "ISBN",
+									"value": "ISBN 1321546512313"
+								},
+								{
+									"key": "status",
+									"value": "DISPONIVEL"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Álgebra Linear\",\r\n    \"author\": \"Boldrini\",\r\n    \"year_publication\": 2022,\r\n    \"publishing_company\": \"Arqueiro\",\r\n    \"subject\": \"Matemática\",\r\n    \"description\": \"207p, com amassados nas pontas\",\r\n    \"isbn\": \"ISBN 132454651213\",\r\n    \"shelf_location\": \"D365\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"id\": 1,\r\n    \"name\": \"Álgebra Linear\",\r\n    \"author\": \"Boldrini\",\r\n    \"year_publication\": 2022,\r\n    \"publishing_company\": \"Arqueiro\",\r\n    \"subject\": \"Matemática\",\r\n    \"description\": \"207p, com amassados nas pontas\",\r\n    \"isbn\": \"ISBN 132454651213\",\r\n    \"shelf_location\": \"D365\",\r\n    \"status\": \"EMPRESTADO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "Loans",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/loan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"loan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "G7bdTA3979aqPhvzd2P7p6vSZ1dkUmpPRykZH9ys2QUwTmTGmjWbkKjOcULxLjFXI3cWr8yvuJVM4AZl0k5rUgyV9A01TPdHYq1ob4GumepSAvtMuTtzRIyCww3KSQXN\n",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apiKey",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
