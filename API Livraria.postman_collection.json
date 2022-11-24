@@ -174,7 +174,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Álgebra Linear\",\r\n    \"author\": \"Boldrini\",\r\n    \"year_publication\": 2022,\r\n    \"publishing_company\": \"Arqueiro\",\r\n    \"subject\": \"Matemática\",\r\n    \"description\": \"207p, com amassados nas pontas\",\r\n    \"isbn\": \"ISBN 132454651213\",\r\n    \"shelf_location\": \"D365\"\r\n}",
+							"raw": "{\r\n    \"name\": {{name}},\r\n    \"author\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,7 +239,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \"id\": 1,\r\n    \"name\": \"Álgebra Linear\",\r\n    \"author\": \"Boldrini\",\r\n    \"year_publication\": 2022,\r\n    \"publishing_company\": \"Arqueiro\",\r\n    \"subject\": \"Matemática\",\r\n    \"description\": \"207p, com amassados nas pontas\",\r\n    \"isbn\": \"ISBN 132454651213\",\r\n    \"shelf_location\": \"D365\",\r\n    \"status\": \"EMPRESTADO\"\r\n}",
+							"raw": "{\r\n    id: {{id}},\r\n    \"name\": {{name}},\r\n    \"author\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}},\r\n    \"status\": {{status}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -304,7 +304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1\r\n}\r\n\r\n\r\n",
+							"raw": "{\r\n    \"id\": {{id}}\r\n}\r\n\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -1,0 +1,67 @@
+[
+    {   
+        "id": 1,
+        "name": "Álgebra Linear",
+        "author": "Boldrini",
+        "year_publication": 2022,
+        "publishing_company": "Arqueiro",
+        "subject": "Matemática",
+        "description": "207p, com amassados nas pontas",
+        "isbn": "ISBN 132454651213",
+        "shelf_location": "D365",
+        "status": "EMPRESTADO"
+    },
+    {
+        "id": 2,
+        "name": "As Brumas de Avalon",
+        "author": "Marion Zimmer Bradley",
+        "year_publication": 2018,
+        "publishing_company": "Planeta Minotauro",
+        "subject": "Romance",
+        "description": "968 páginas, capa dura",
+        "isbn": "ISBN 978-8542213416",
+        "shelf_location": "F272",
+        "status": "DISPONIVEL"
+    },
+    {
+        "id": 3,
+        "name": "Rápido e Devagar",
+        "author": "Daniel Kahneman",
+        "year_publication": 2011,
+        "publishing_company": "Objetiva",
+        "subject": [
+            "Pensamento",  
+            "Processo decisório", 
+            "Intuição", 
+            "Raciocínio"  
+        ],
+        "description": "607 p.:il.;23 cm  ",
+        "isbn": "ISBN 9788539003839",
+        "shelf_location": "A219",
+        "status": "EMPRESTADO"
+    },
+    {
+        "id": 4,
+        "name": "Cálculo numérico: aspectos teóricos e computacionais",
+        "author": "Marcia A. Gomes Ruggiero",
+        "year_publication": 1997,
+        "publishing_company": "Pearson",
+        "subject": "Matemática",
+        "description": "406 p.:il.",
+        "isbn": "ISBN 9788534602044",
+        "shelf_location": "B534",
+        "status": "DISPONIVEL"
+    },
+    {
+        "id": 5,
+        "name": "Uma breve história do tempo: do big bang aos buracos negros",
+        "author": "Stephen W. Hawking",
+        "year_publication": 1989,
+        "publishing_company": "Intrínseca",
+        "subject": "Física",
+        "description": "262 p. : il",
+        "isbn": "",
+        "shelf_location": "P971",
+        "status": "EMPRESTADO"
+    }
+]

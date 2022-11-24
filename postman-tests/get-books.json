@@ -1,0 +1,14 @@
+[
+    {
+        "limit": 10,
+        "page": 3
+    },
+    {
+        "author": "Daniel Santos",
+        "subject": "Matemática"
+    },
+    {
+        "year_publication": 2018,
+        "status": "DISPONIVEL"
+    }
+]
