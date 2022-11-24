@@ -11,6 +11,58 @@
 			"item": [
 				{
 					"name": "Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"    \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"     var Ajv = require('ajv'),\r",
+									"    ajv = new Ajv({ logger: console, allErrors: true }),\r",
+									"    schema =  \r",
+									"    {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"id\": \"integer\",\r",
+									"            \"name\": \"string\",\r",
+									"            \"author\": \"string\",\r",
+									"            \"year_publication\": \"integer\",\r",
+									"            \"publishing_company\": \"string\",\r",
+									"            \"subject\": \"string\",\r",
+									"            \"description\": \"string\",\r",
+									"            \"isbn\": \"string\",\r",
+									"            \"shelf_location\": \"string\",\r",
+									"            \"status\": \"string\"\r",
+									"        }\r",
+									"    }\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"    pm.expect(jsonData.books).to.be.an(\"array\");\r",
+									"    pm.expect(ajv.validate(schema, pm.response.json()), JSON.stringify(ajv.errors))\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -81,6 +133,42 @@
 				},
 				{
 					"name": "Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"    \"Missing properties\",\r",
+									"    \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -109,7 +197,43 @@
 					"response": []
 				},
 				{
-					"name": "Books Copy",
+					"name": "Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"       \"The book id was not found\",\r",
+									"       \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -138,13 +262,49 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"       \"The book id was not found\",\r",
+									"       \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1\r\n}",
+							"raw": "{\r\n    \"id\": 1\r\n}\r\n\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -173,6 +333,43 @@
 			"item": [
 				{
 					"name": "Loans",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"       \"The book is not availible for loan\",\r",
+									"       \"The book id was not found\",\r",
+									"       \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -199,6 +396,72 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Devolutions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"       \"The book has already been returned\",\r",
+									"       \"The book id was not found\",\r",
+									"       \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/v1/devolutions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"v1",
+								"devolutions"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -208,7 +471,7 @@
 		"apikey": [
 			{
 				"key": "value",
-				"value": "G7bdTA3979aqPhvzd2P7p6vSZ1dkUmpPRykZH9ys2QUwTmTGmjWbkKjOcULxLjFXI3cWr8yvuJVM4AZl0k5rUgyV9A01TPdHYq1ob4GumepSAvtMuTtzRIyCww3KSQXN\n",
+				"value": "G7bdTA3979aqPhvzd2P7p6vSZ1dkUmpPRykZH9ys2QUwTmTGmjWbkKjOcULxLjFXI3cWr8yvuJVM4AZl0k5rUgyV9A01TPdHYq1ob4GumepSAvtMuTtzRIyCww3KSQXN",
 				"type": "string"
 			},
 			{
