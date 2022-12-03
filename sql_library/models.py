@@ -20,3 +20,19 @@ class Author(Base):
     name = Column(String, index=True)
 
     work = relationship("Book", back_populates="author")
+
+class Customer(Base):
+    __tablename__ = "customers"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    birth_day = Column(String)
+    address = Column(String)
+
+class Loan(Base):
+    __tablename__ = "loans"
+
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(String, index=True)
+    customer_id = Column(Integer, ForeignKey("customers.id"))
+    book_id = Column(Integer, ForeignKey("books.id"))
