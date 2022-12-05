@@ -32,3 +32,31 @@ class Author(AuthorBase):
 
     class Config:
         orm_mode = True
+
+class CustomerBase(BaseModel):
+    name: str
+    birth_day: str
+    address: str
+
+class CustomerCreate(CustomerBase):
+    pass
+
+class Customer(CustomerBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+class LoanBase(BaseModel):
+    date: str
+
+class LoanCreate(LoanBase):
+    pass
+
+class Loan(LoanBase):
+    id: int
+    customer_id: int
+    book_id: int
+
+    class Config:
+        orm_mode = True
