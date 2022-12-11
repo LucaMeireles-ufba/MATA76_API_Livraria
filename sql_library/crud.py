@@ -27,7 +27,8 @@ def get_book_by_isbn(db: Session, book_isbn: int):
     return db.query(models.Book).filter(models.Book.isbn == book_isbn).first()
 
 def create_book(db: Session, book: schemas.BookCreate, author_id: int):
-    db_book = models.Book(isbn=book.isbn, name=book.name, author_id=author_id)
+   db_book = models.Book(isbn=book.isbn, name=book.name, author_id=author_id, year_publication = book.year_publication,
+                        publishing_company = book.publishing_company, description = book.description)
     db.add(db_book)
     db.commit()
     db.refresh(db_book)
