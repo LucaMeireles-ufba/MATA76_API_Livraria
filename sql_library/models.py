@@ -10,6 +10,12 @@ class Book(Base):
     isbn = Column(String, unique=True, index=True)
     name = Column(String)
     author_id = Column(Integer, ForeignKey("authors.id"))
+    author = Column(String, ForeignKey("authors.name"))
+    year_publication = Column(Integer)
+    publishing_company = Column(String)
+    description = Column(String)
+    shelf_location = Column(String)
+    status = Column(String)
 
     author = relationship("Author", back_populates="work")
 
