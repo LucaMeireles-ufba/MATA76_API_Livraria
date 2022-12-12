@@ -29,13 +29,27 @@ def read_books(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     books = crud.get_books(db, skip=skip, limit=limit)
     return books
 
-@app.get("/books/{books_isbn}", response_model=schemas.Book)
-def read_book_bt_isbn(book_isbn: int, db: Session = Depends(get_db)):
+@app.get("/book/{book_isbn}", response_model = schemas.Book)
+def read_book_by_isbn(book_isbn: int, db: Session = Depends(get_db)):
     return crud.get_book_by_isbn(db=db, book_isbn=book_isbn)
 
 @app.post("/books/", response_model = schemas.Book)
 def create_book(book: schemas.BookCreate, author_id: int, db: Session = Depends(get_db)):
     return crud.create_book(db=db, book=book, author_id=author_id)
+
+@app.put("/book/", response_model = schemas.Book)
+def update_book(book_id: int, name: str, db : Session=Depends(get_db)):
+    db_book = crud.get_book(db, book_id)
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return crud.update_book(db, book_id, name)
+
+@app.delete("/book/", response_model = schemas.Book)
+def delete_book(book_id: int, db: Session = Depends(get_db)):
+    db_book = crud.get_book(db, book_id)
+    if db_book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return crud.remove_book(db, book_id)
 
 ### CLIENTES ###
 

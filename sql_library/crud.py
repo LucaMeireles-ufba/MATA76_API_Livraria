@@ -33,6 +33,20 @@ def create_book(db: Session, book: schemas.BookCreate, author_id: int):
     db.refresh(db_book)
     return db_book
 
+def update_book(db: Session, book_id: int, name: str):
+    if book := get_book(db, book_id):
+        db.query(models.Book).filter(models.Book.id == book_id).update({'name': name})
+        db.commit()
+        db.refresh(book)
+        return book
+
+def remove_book(db: Session, book_id):
+    if book := get_book(db, book_id):
+        db.delete(book)
+        db.commit()
+
+    return book
+
 def get_customers(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Customer).offset(skip).limit(limit).all()
 
