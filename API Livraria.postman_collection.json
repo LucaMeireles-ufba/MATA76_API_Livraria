@@ -1,14 +1,122 @@
 {
 	"info": {
-		"_postman_id": "21a56084-12e8-4448-a84d-912bf5a3e238",
+		"_postman_id": "f901189b-8cb9-4cc2-b9d6-cf58482a6054",
 		"name": "API Livraria",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24366056"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "author",
+			"item": [
+				{
+					"name": "Author",
+					"request": {
+						"auth": {
+							"type": "apikey"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": {{name}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/authors/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"authors",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "books",
 			"item": [
+				{
+					"name": "Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json(),\r",
+									"\r",
+									" messages = [\r",
+									"    \"Missing properties\",\r",
+									"    \"Unauthenticated\"\r",
+									" ]\r",
+									"\r",
+									" if (jsonData.success === false) {\r",
+									"\r",
+									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
+									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
+									"        pm.expect(jsonData.status).to.equal(400)\r",
+									"        pm.expect()\r",
+									"    })\r",
+									" }\r",
+									" else {\r",
+									"\r",
+									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
+									"        pm.expect(jsonData.success).to.equal(true)\r",
+									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
+									"        pm.expect(jsonData.status).to.equal(201)\r",
+									"        pm.expect(jsonData).to.have('timestamp')\r",
+									"    })   \r",
+									" }\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": {{name}},\r\n    \"author_id\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/books?author_id={{author}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"books"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "{{author}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Books",
 					"event": [
@@ -63,28 +171,16 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3333/v1/books?limit=1&page=2&author=Daniel Santos&year_publications=2028&name=Caulculo numérico&publishing_company=Arqueiro&subject=matemática&ISBN=ISBN 1321546512313&status=DISPONIVEL",
+							"raw": "http://localhost:8000/v1/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
 								"books"
@@ -92,39 +188,48 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								},
 								{
-									"key": "page",
-									"value": "2"
+									"key": "skip",
+									"value": "2",
+									"disabled": true
 								},
 								{
 									"key": "author",
-									"value": "Daniel Santos"
+									"value": "Daniel Santos",
+									"disabled": true
 								},
 								{
-									"key": "year_publications",
-									"value": "2028"
+									"key": "year_publication",
+									"value": "2020",
+									"disabled": true
 								},
 								{
 									"key": "name",
-									"value": "Caulculo numérico"
+									"value": "Caulculo numérico",
+									"disabled": true
 								},
 								{
 									"key": "publishing_company",
-									"value": "Arqueiro"
+									"value": "Arqueiro",
+									"disabled": true
 								},
 								{
 									"key": "subject",
-									"value": "matemática"
+									"value": "matemática",
+									"disabled": true
 								},
 								{
 									"key": "ISBN",
-									"value": "ISBN 1321546512313"
+									"value": "ISBN 1321546512313",
+									"disabled": true
 								},
 								{
 									"key": "status",
-									"value": "DISPONIVEL"
+									"value": "DISPONIVEL",
+									"disabled": true
 								}
 							]
 						}
@@ -132,65 +237,21 @@
 					"response": []
 				},
 				{
-					"name": "Books",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"let jsonData = pm.response.json(),\r",
-									"\r",
-									" messages = [\r",
-									"    \"Missing properties\",\r",
-									"    \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.success).to.equal(true)\r",
-									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
-									"        pm.expect(jsonData.status).to.equal(201)\r",
-									"        pm.expect(jsonData).to.have('timestamp')\r",
-									"    })   \r",
-									" }\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "Books by ISBN",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": {{name}},\r\n    \"author\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}}\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3333/v1/books",
+							"raw": "http://localhost:8000/v1/books/{{book_isbn}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
-								"books"
+								"books",
+								"{{book_isbn}}"
 							]
 						}
 					},
@@ -247,12 +308,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3333/v1/books",
+							"raw": "http://localhost:8000/v1/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
 								"books"
@@ -312,12 +373,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3333/v1/books",
+							"raw": "http://localhost:8000/v1/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
 								"books"
@@ -329,8 +390,149 @@
 			]
 		},
 		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/customers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"customers",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/customer/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"customer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bruno\",\r\n    \"birth_day\": \"11/06/1999\",\r\n    \"address\": \"Rua Fulano de Tal, 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/customers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "loans",
 			"item": [
+				{
+					"name": "Loans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/loans/?skip&limit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"loans",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": null
+								},
+								{
+									"key": "limit",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loans By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/loans/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"loans",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Loans",
 					"event": [
@@ -383,15 +585,28 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3333/v1/loan",
+							"raw": "http://localhost:8000/v1/loans/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
-								"loan"
+								"loans",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -449,12 +664,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3333/v1/devolutions",
+							"raw": "http://localhost:8000/v1/devolutions",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3333",
+							"port": "8000",
 							"path": [
 								"v1",
 								"devolutions"
