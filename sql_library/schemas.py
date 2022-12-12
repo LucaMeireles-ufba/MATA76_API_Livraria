@@ -6,8 +6,7 @@ from pydantic import BaseModel
 class BookBase(BaseModel):
     isbn: str
     name: str
-    author_id:int
-    year_publication:int
+    year_publication:str
     publishing_company:str
     description:str
 
