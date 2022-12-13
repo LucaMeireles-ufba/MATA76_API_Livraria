@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f901189b-8cb9-4cc2-b9d6-cf58482a6054",
+		"_postman_id": "648a52f4-f370-45ac-bb59-4019f6bea447",
 		"name": "API Livraria",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24887753"
 	},
 	"item": [
 		{
@@ -10,6 +11,39 @@
 			"item": [
 				{
 					"name": "Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									"messages = [",
+									"       \"field required\",",
+									"       \"value_error.missing\"",
+									" ]",
+									"",
+									" if (pm.response.code === 200) {",
+									"     pm.test(`SUCCESS`, () => {",
+									"        pm.expect(jsonData).to.have.property('id');",
+									"        pm.expect(jsonData.id).to.be.a('number');",
+									"        pm.expect(jsonData).to.have.property('name');",
+									"        pm.expect(jsonData.name).to.be.a('string');",
+									"    })   ",
+									" }",
+									" else { ",
+									"    pm.test(`ERROR`, () => {",
+									"        pm.expect(jsonData).to.have.property('detail');",
+									"        pm.expect(jsonData.detail[0].msg).to.be.oneOf(messages);",
+									"        pm.expect(jsonData.detail[0].type).to.be.oneOf(messages);",
+									"    }) ",
+									" }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "apikey"
@@ -18,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": {{name}}\r\n}",
+							"raw": "{\r\n    \"name\": \"{{name}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -26,14 +60,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/authors/",
+							"raw": "http://localhost:8000/authors/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"authors",
 								""
 							]
@@ -53,30 +86,28 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = pm.response.json(),\r",
+									"let jsonData = pm.response.json()\r",
 									"\r",
-									" messages = [\r",
-									"    \"Missing properties\",\r",
-									"    \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.success).to.equal(true)\r",
-									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
-									"        pm.expect(jsonData.status).to.equal(201)\r",
-									"        pm.expect(jsonData).to.have('timestamp')\r",
+									" if (pm.response.code === 200) {\r",
+									"     pm.test(`SUCCESS`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('id');\r",
+									"        pm.expect(jsonData.id).to.be.a('number');\r",
+									"        pm.expect(jsonData).to.have.property('name');\r",
+									"        pm.expect(jsonData.name).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('isbn');\r",
+									"        pm.expect(jsonData.isbn).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('year_publication');\r",
+									"        pm.expect(jsonData.year_publication).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('publishing_company');\r",
+									"        pm.expect(jsonData.publishing_company).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('description');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
 									"    })   \r",
+									" }\r",
+									" else { \r",
+									"    pm.test(`ERROR`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('detail');\r",
+									"    }) \r",
 									" }\r",
 									""
 								],
@@ -89,7 +120,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": {{name}},\r\n    \"author_id\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}}\r\n}",
+							"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"author_id\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": \"{{publishing_company}}\",\r\n    \"description\": \"{{description}}\",\r\n    \"isbn\": \"{{isbn}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,20 +128,19 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/books?author_id={{author}}",
+							"raw": "http://localhost:8000/books?author_id=22",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"books"
 							],
 							"query": [
 								{
 									"key": "author_id",
-									"value": "{{author}}"
+									"value": "22"
 								}
 							]
 						}
@@ -124,46 +154,29 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = pm.response.json(),\r",
+									"let jsonData = pm.response.json()\r",
 									"\r",
-									" messages = [\r",
-									"    \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"     var Ajv = require('ajv'),\r",
-									"    ajv = new Ajv({ logger: console, allErrors: true }),\r",
-									"    schema =  \r",
-									"    {\r",
-									"        \"type\": \"object\",\r",
-									"        \"properties\": {\r",
-									"            \"id\": \"integer\",\r",
-									"            \"name\": \"string\",\r",
-									"            \"author\": \"string\",\r",
-									"            \"year_publication\": \"integer\",\r",
-									"            \"publishing_company\": \"string\",\r",
-									"            \"subject\": \"string\",\r",
-									"            \"description\": \"string\",\r",
-									"            \"isbn\": \"string\",\r",
-									"            \"shelf_location\": \"string\",\r",
-									"            \"status\": \"string\"\r",
-									"        }\r",
-									"    }\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"    pm.expect(jsonData.books).to.be.an(\"array\");\r",
-									"    pm.expect(ajv.validate(schema, pm.response.json()), JSON.stringify(ajv.errors))\r",
+									" if (pm.response.code === 200) {\r",
+									"     pm.test(`SUCCESS`, () => {\r",
+									"        pm.expect(jsonData).to.be.an('array');\r",
+									"        pm.expect(jsonData[0]).to.have.property('id');\r",
+									"        pm.expect(jsonData[0].id).to.be.a('number');\r",
+									"        pm.expect(jsonData[0]).to.have.property('name');\r",
+									"        pm.expect(jsonData[0].name).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('isbn');\r",
+									"        pm.expect(jsonData[0].isbn).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('year_publication');\r",
+									"        pm.expect(jsonData[0].year_publication).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('publishing_company');\r",
+									"        pm.expect(jsonData[0].publishing_company).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('description');\r",
+									"        pm.expect(jsonData[0].description).to.be.a('string');\r",
 									"    })   \r",
+									" }\r",
+									" else { \r",
+									"    pm.test(`ERROR`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('detail');\r",
+									"    }) \r",
 									" }\r",
 									""
 								],
@@ -175,14 +188,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/v1/books",
+							"raw": "http://localhost:8000/books",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"books"
 							],
 							"query": [
@@ -238,6 +250,41 @@
 				},
 				{
 					"name": "Books by ISBN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									" if (pm.response.code === 200) {",
+									"     pm.test(`SUCCESS`, () => {",
+									"        pm.expect(jsonData).to.be.an('array');",
+									"        pm.expect(jsonData[0]).to.have.property('id');",
+									"        pm.expect(jsonData[0].id).to.be.a('number');",
+									"        pm.expect(jsonData[0]).to.have.property('name');",
+									"        pm.expect(jsonData[0].name).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('isbn');",
+									"        pm.expect(jsonData[0].isbn).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('year_publication');",
+									"        pm.expect(jsonData[0].year_publication).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('publishing_company');",
+									"        pm.expect(jsonData[0].publishing_company).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('description');",
+									"        pm.expect(jsonData[0].description).to.be.a('string');",
+									"    })   ",
+									" }",
+									" else { ",
+									"    pm.test(`ERROR`, () => {",
+									"        pm.expect(jsonData).to.have.property('detail');",
+									"    }) ",
+									" }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -264,30 +311,29 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = pm.response.json(),\r",
+									"let jsonData = pm.response.json()\r",
 									"\r",
-									" messages = [\r",
-									"       \"The book id was not found\",\r",
-									"       \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.success).to.equal(true)\r",
-									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
-									"        pm.expect(jsonData.status).to.equal(201)\r",
-									"        pm.expect(jsonData).to.have('timestamp')\r",
+									" if (pm.response.code === 200) {\r",
+									"     pm.test(`SUCCESS`, () => {\r",
+									"        pm.expect(jsonData).to.be.an('array');\r",
+									"        pm.expect(jsonData[0]).to.have.property('id');\r",
+									"        pm.expect(jsonData[0].id).to.be.a('number');\r",
+									"        pm.expect(jsonData[0]).to.have.property('name');\r",
+									"        pm.expect(jsonData[0].name).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('isbn');\r",
+									"        pm.expect(jsonData[0].isbn).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('year_publication');\r",
+									"        pm.expect(jsonData[0].year_publication).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('publishing_company');\r",
+									"        pm.expect(jsonData[0].publishing_company).to.be.a('string');\r",
+									"        pm.expect(jsonData[0]).to.have.property('description');\r",
+									"        pm.expect(jsonData[0].description).to.be.a('string');\r",
 									"    })   \r",
+									" }\r",
+									" else { \r",
+									"    pm.test(`ERROR`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('detail');\r",
+									"    }) \r",
 									" }\r",
 									""
 								],
@@ -300,7 +346,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    id: {{id}},\r\n    \"name\": {{name}},\r\n    \"author\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}},\r\n    \"status\": {{status}}\r\n}",
+							"raw": "{\r\n    \"id\": {{id}},\r\n    \"name\": {{name}},\r\n    \"author\": {{author}},\r\n    \"year_publication\": {{year_publication}},\r\n    \"publishing_company\": {{publishing_company}},\r\n    \"subject\": {{subject}},\r\n    \"description\": {{description}},\r\n    \"isbn\": {{isbn}},\r\n    \"shelf_location\": {{shelf_location}},\r\n    \"status\": {{status}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -308,15 +354,24 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/books",
+							"raw": "http://localhost:8000/books?author_id={{id}}&name=\"{{name}}\"",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"books"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "name",
+									"value": "\"{{name}}\""
+								}
 							]
 						}
 					},
@@ -329,30 +384,28 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = pm.response.json(),\r",
+									"let jsonData = pm.response.json()\r",
 									"\r",
-									" messages = [\r",
-									"       \"The book id was not found\",\r",
-									"       \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.success).to.equal(true)\r",
-									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
-									"        pm.expect(jsonData.status).to.equal(201)\r",
-									"        pm.expect(jsonData).to.have('timestamp')\r",
+									" if (pm.response.code === 200) {\r",
+									"     pm.test(`SUCCESS`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('id');\r",
+									"        pm.expect(jsonData.id).to.be.a('number');\r",
+									"        pm.expect(jsonData).to.have.property('name');\r",
+									"        pm.expect(jsonData.name).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('isbn');\r",
+									"        pm.expect(jsonData.isbn).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('year_publication');\r",
+									"        pm.expect(jsonData.year_publication).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('publishing_company');\r",
+									"        pm.expect(jsonData.publishing_company).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('description');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
 									"    })   \r",
+									" }\r",
+									" else { \r",
+									"    pm.test(`ERROR`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('detail');\r",
+									"    }) \r",
 									" }\r",
 									""
 								],
@@ -373,15 +426,20 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/books",
+							"raw": "http://localhost:8000/books?id={{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"books"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
 							]
 						}
 					},
@@ -394,18 +452,48 @@
 			"item": [
 				{
 					"name": "Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									" if (pm.response.code === 200) {",
+									"     pm.test(`SUCCESS`, () => {",
+									"        pm.expect(jsonData).to.be.an('array');",
+									"        pm.expect(jsonData[0]).to.have.property('id');",
+									"        pm.expect(jsonData[0].id).to.be.a('number');",
+									"        pm.expect(jsonData[0]).to.have.property('name');",
+									"        pm.expect(jsonData[0].name).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('birth_day');",
+									"        pm.expect(jsonData[0].birth_day).to.be.a('string');",
+									"        pm.expect(jsonData[0]).to.have.property('address');",
+									"        pm.expect(jsonData[0].address).to.be.a('string');",
+									"    })   ",
+									" }",
+									" else { ",
+									"    pm.test(`ERROR`, () => {",
+									"        pm.expect(jsonData).to.have.property('detail');",
+									"    }) ",
+									" }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/v1/customers/",
+							"raw": "http://localhost:8000/customers/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"customers",
 								""
 							],
@@ -427,18 +515,47 @@
 				},
 				{
 					"name": "Customer By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									" if (pm.response.code === 200) {",
+									"     pm.test(`SUCCESS`, () => {",
+									"        pm.expect(jsonData).to.have.property('id');",
+									"        pm.expect(jsonData.id).to.be.a('number');",
+									"        pm.expect(jsonData).to.have.property('name');",
+									"        pm.expect(jsonData.name).to.be.a('string');",
+									"        pm.expect(jsonData).to.have.property('birth_day');",
+									"        pm.expect(jsonData.birth_day).to.be.a('string');",
+									"        pm.expect(jsonData).to.have.property('address');",
+									"        pm.expect(jsonData.address).to.be.a('string');",
+									"    })   ",
+									" }",
+									" else { ",
+									"    pm.test(`ERROR`, () => {",
+									"        pm.expect(jsonData).to.have.property('detail');",
+									"    }) ",
+									" }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/v1/customer/2",
+							"raw": "http://localhost:8000/customer/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"customer",
 								"2"
 							]
@@ -448,6 +565,36 @@
 				},
 				{
 					"name": "Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json()",
+									"",
+									" if (pm.response.code === 200) {",
+									"     pm.test(`SUCCESS`, () => {",
+									"        pm.expect(jsonData).to.have.property('id');",
+									"        pm.expect(jsonData.id).to.be.a('number');",
+									"        pm.expect(jsonData).to.have.property('name');",
+									"        pm.expect(jsonData.name).to.be.a('string');",
+									"        pm.expect(jsonData).to.have.property('birth_day');",
+									"        pm.expect(jsonData.birth_day).to.be.a('string');",
+									"        pm.expect(jsonData).to.have.property('address');",
+									"        pm.expect(jsonData.address).to.be.a('string');",
+									"    })   ",
+									" }",
+									" else { ",
+									"    pm.test(`ERROR`, () => {",
+									"        pm.expect(jsonData).to.have.property('detail');",
+									"    }) ",
+									" }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -461,14 +608,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/customers/",
+							"raw": "http://localhost:8000/customers/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"customers",
 								""
 							]
@@ -487,25 +633,24 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/v1/loans/?skip&limit",
+							"raw": "http://localhost:8000/loans/?skip=100&limit=1000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"loans",
 								""
 							],
 							"query": [
 								{
 									"key": "skip",
-									"value": null
+									"value": "100"
 								},
 								{
 									"key": "limit",
-									"value": null
+									"value": "1000"
 								}
 							]
 						}
@@ -518,16 +663,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/v1/loans/{{id}}",
+							"raw": "http://localhost:8000/loans/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"loans",
-								"{{id}}"
+								"1"
 							]
 						}
 					},
@@ -540,31 +684,24 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let jsonData = pm.response.json(),\r",
+									"let jsonData = pm.response.json()\r",
 									"\r",
-									" messages = [\r",
-									"       \"The book is not availible for loan\",\r",
-									"       \"The book id was not found\",\r",
-									"       \"Unauthenticated\"\r",
-									" ]\r",
-									"\r",
-									" if (jsonData.success === false) {\r",
-									"\r",
-									"    pm.test(`*** E R R O R *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.type).to.equal(\"error\")\r",
-									"        pm.expect(jsonData.message).to.be.oneOf(messages)\r",
-									"        pm.expect(jsonData.status).to.equal(400)\r",
-									"        pm.expect()\r",
-									"    })\r",
-									" }\r",
-									" else {\r",
-									"\r",
-									"    pm.test(`*** S U C C E S S *** ${jsonData.message}`, () => {\r",
-									"        pm.expect(jsonData.success).to.equal(true)\r",
-									"        pm.expect(jsonData.message).to.equal('the operation was performed successfully')\r",
-									"        pm.expect(jsonData.status).to.equal(201)\r",
-									"        pm.expect(jsonData).to.have('timestamp')\r",
+									" if (pm.response.code === 200) {\r",
+									"     pm.test(`SUCCESS`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('id');\r",
+									"        pm.expect(jsonData.id).to.be.a('number');\r",
+									"        pm.expect(jsonData).to.have.property('date');\r",
+									"        pm.expect(jsonData.date).to.be.a('string');\r",
+									"        pm.expect(jsonData).to.have.property('book_id');\r",
+									"        pm.expect(jsonData.book_id).to.be.a('number');\r",
+									"        pm.expect(jsonData).to.have.property('customer_id');\r",
+									"        pm.expect(jsonData.customer_id).to.be.a('number');\r",
 									"    })   \r",
+									" }\r",
+									" else { \r",
+									"    pm.test(`ERROR`, () => {\r",
+									"        pm.expect(jsonData).to.have.property('detail');\r",
+									"    }) \r",
 									" }\r",
 									""
 								],
@@ -577,7 +714,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1\r\n}",
+							"raw": "{\r\n    \"date\": \"{{date}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -585,27 +722,24 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/v1/loans/",
+							"raw": "http://localhost:8000/loans/?customer_id={{customer_id}}&book_id={{book_id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"v1",
 								"loans",
 								""
 							],
 							"query": [
 								{
-									"key": "",
-									"value": null,
-									"disabled": true
+									"key": "customer_id",
+									"value": "{{customer_id}}"
 								},
 								{
-									"key": "",
-									"value": null,
-									"disabled": true
+									"key": "book_id",
+									"value": "{{book_id}}"
 								}
 							]
 						}

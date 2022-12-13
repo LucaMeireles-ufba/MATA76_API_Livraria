@@ -1,7 +1,7 @@
 [
     {
         "name": "Álgebra Linear",
-        "author": "Boldrini",
+        "author": 1,
         "year_publication": 2022,
         "publishing_company": "Arqueiro",
         "subject": "Matemática",
@@ -11,7 +11,7 @@
     },
     {
         "name": "As Brumas de Avalon",
-        "author": "Marion Zimmer Bradley",
+        "author": 1,
         "year_publication": 2018,
         "publishing_company": "Planeta Minotauro",
         "subject": "Romance",
@@ -21,7 +21,7 @@
     },
     {
         "name": "Rápido e Devagar",
-        "author": "Daniel Kahneman",
+        "author": 2,
         "year_publication": 2011,
         "publishing_company": "Objetiva",
         "subject": [
@@ -36,7 +36,7 @@
     },
     {
         "name": "Cálculo numérico: aspectos teóricos e computacionais",
-        "author": "Marcia A. Gomes Ruggiero",
+        "author": 3,
         "year_publication": 1997,
         "publishing_company": "Pearson",
         "subject": "Matemática",
@@ -46,7 +46,7 @@
     },
     {
         "name": "Uma breve história do tempo: do big bang aos buracos negros",
-        "author": "Stephen Hawking",
+        "author": 1,
         "year_publication": 1989,
         "publishing_company": "Intrínseca",
         "subject": "Física",
@@ -56,7 +56,7 @@
     },
     {
         "name": "Sapiens (Nova edição): Uma breve história da humanidade",
-        "author": "Yuval Noah Harari",
+        "author": 2,
         "year_publication": 2020 ,
         "publishing_company": "Companhia das Letras",
         "subject": ["História da Civilização",
@@ -67,7 +67,7 @@
     },
     {
         "name": "Breves respostas para grandes questões",
-        "author": "Stephen Hawking ",
+        "author": 3,
         "year_publication": 2018,
         "publishing_company": "Intrínseca",
         "subject": ["Cosmologia",
@@ -79,7 +79,7 @@
     },
     {
         "name": "Do Mil ao Milhão. Sem Cortar o Cafezinho",
-        "author": "Thiago Nigro",
+        "author": 1,
         "year_publication": 2018,
         "publishing_company": "HarperCollins",
         "subject": "Finanças Pessoais",
@@ -89,7 +89,7 @@
     },
     {
         "name": "O Diário de Anne Frank",
-        "author": "Anne Frank ",
+        "author": 2,
         "year_publication": 2022,
         "publishing_company": "Editora Garnier",
         "subject": ["Judaica História Mundial",
@@ -101,7 +101,7 @@
     },
     {
         "name": "Todas as suas (im)perfeições",
-        "author": " Colleen Hoover",
+        "author": 3,
         "year_publication": 2019,
         "publishing_company": "Galera",
         "subject": ["Europeia Literatura e Ficção",
@@ -113,7 +113,7 @@
     },
     {
         "name": "A revolução dos bichos: Um conto de fadas",
-        "author": "George Orwell",
+        "author": 1,
         "year_publication": 2007,
         "publishing_company": "Companhia das Letras",
         "subject": ["Clássicos de Ficção",
@@ -124,7 +124,7 @@
     },
     {
         "name": "Pai Rico, Pai Pobre - Edição de 20 anos atualizada e ampliada: O que os ricos ensinam a seus filhos sobre dinheiro",
-        "author": "Robert T. Kiyosaki",
+        "author": 2,
         "year_publication": 2018,
         "publishing_company": "Alta Books",
         "subject": ["Aconselhamento em Escolas e Ensino",
@@ -136,7 +136,7 @@
     },
     {
         "name": "Mindset: A nova psicologia do sucesso",
-        "author": "Carol S. Dweck",
+        "author": 3,
         "year_publication": 2017 ,
         "publishing_company": "Objetiva",
         "subject": ["Carreiras",
@@ -148,7 +148,7 @@
     },
     {
         "name": "O poder da ação",
-        "author": "Paulo Vieira",
+        "author": 1,
         "year_publication": 2015,
         "publishing_company": "Gente",
         "subject": "Transformação Pessoal",
@@ -158,7 +158,7 @@
     },
     {
         "name": "A vida invisível de Addie LaRue",
-        "author": "V.E. Schwab",
+        "author": 2,
         "year_publication": 2021,
         "publishing_company": "Galera",
         "subject": ["Livros de Literatura e Ficção para Adolescentes",
@@ -170,7 +170,7 @@
     },
     {
         "name": "A rainha vermelha",
-        "author": "Victoria Aveyard",
+        "author": 3,
         "year_publication": 2015,
         "publishing_company": "Seguinte",
         "subject": ["Literatura e Ficção para Adolescentes: Ação e Aventura",
@@ -181,7 +181,7 @@
     },
     {
         "name": "O pequeno príncipe",
-        "author": "Antoine de Saint-Exupéry",
+        "author": 1,
         "year_publication": 2018,
         "publishing_company": "HarperCollins",
         "subject": ["Clássicos em Infantil e Juvenil",
@@ -193,7 +193,7 @@
     },
     {
         "name": "O milagre da manhã: O segredo para transformar sua vida (antes das 8 horas)",
-        "author": "Hal Elrod",
+        "author": 2,
         "year_publication": 2016,
         "publishing_company": "BestSeller",
         "subject": ["Motivacional Auto-Ajuda",
@@ -205,7 +205,7 @@
     },
     {
         "name": "Escravidão - Volume 3: Da Independência do Brasil à Lei Áurea",
-        "author": "Laurentino Gomes",
+        "author": 3,
         "year_publication": 2022,
         "publishing_company": "Globo Livros",
         "subject": ["África História",
@@ -217,7 +217,7 @@
     },
     {
         "name": "O poder do hábito",
-        "author": "Charles Duhigg",
+        "author": 1,
         "year_publication": 2012,
         "publishing_company": "Objetiva",
         "subject": ["Comportamento Organizacional",
