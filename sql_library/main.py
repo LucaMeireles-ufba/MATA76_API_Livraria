@@ -30,7 +30,7 @@ def read_books(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return books
 
 @app.get("/v1/book/{book_isbn}", response_model = schemas.Book)
-def read_book_by_isbn(book_isbn: int, db: Session = Depends(get_db)):
+def read_book_by_isbn(book_isbn: str, db: Session = Depends(get_db)):
     return crud.get_book_by_isbn(db=db, book_isbn=book_isbn)
 
 @app.post("/v1/books/", response_model = schemas.Book)
